@@ -10,6 +10,7 @@ import authUserMiddleware from '../middlewares/authUserMiddleware.js';
 import {
     registerUserController,
     validateUserController,
+    loginUserController,
 } from '../controllers/users/index.js';
 
 //Creamos un router
@@ -22,7 +23,7 @@ router.post('/register', registerUserController);
 router.put('/validate/:regCode', validateUserController);
 
 // Login
-//router.post('/login', loginUser);
+router.post('/login', loginUserController);
 
 // Obtener perfil del usuario logueado
 //router.get('/profile', authUserMiddleware, getUserProfile);
