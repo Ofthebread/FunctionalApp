@@ -21,7 +21,7 @@ let pool;
 
 //configuración del administrador
 const adminConfig={
-    user:MYSQL_ADMIN
+    user:MYSQL_ADMIN,
     password: MYSQL_ADMIN_PASS,
     email: MYSQL_ADMIN_EMAIL || 'admin@example.com' //valor por defecto 
 }
