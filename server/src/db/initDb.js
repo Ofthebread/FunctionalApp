@@ -50,7 +50,7 @@ const main = async () => {
 			trainingId INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 			title VARCHAR(100) NOT NULL,
 			description TEXT NOT NULL,
-			createdBy INT UNSIGNED NOT NULL,
+			createdBy INT UNSIGNED,
 			createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
 			modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
 			FOREIGN KEY (createdBy) REFERENCES users(userId) ON DELETE SET NULL
@@ -65,7 +65,7 @@ const main = async () => {
 			name VARCHAR(100) NOT NULL,
 			videoUrl VARCHAR(100) NOT NULL,
 			description TEXT,
-			createdBy INT UNSIGNED NOT NULL,
+			createdBy INT UNSIGNED,
 			createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
 			modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
 			FOREIGN KEY (createdBy) REFERENCES users(userId) ON DELETE SET NULL
