@@ -15,6 +15,12 @@ const { PORT, UPLOADS_DIR } = process.env;
 //creamos el servidor (aplicación Express)
 const app = express();
 
+// Definimos __dirname en módulos ES para usar rutas absolutas (no existe por defecto).
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+//carpeta de uploads como estática para acceder a archivos subidos (imágenes, videos, etc.)
+app.use('/uploads', express.static(path.join(__dirname, UPLOADS_DIR)));
+
 //Middleware que muestra por consola información aceca de la petición entrante
 app.use(morgan('dev'));
 
