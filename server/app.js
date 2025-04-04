@@ -6,8 +6,11 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import fileUpload from 'express-fileupload';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
 //importamos rutas
+import userRoutes from './src/routes/userRoutes.js';
 
 //obtenemos las variables de entorno necesarias
 const { PORT, UPLOADS_DIR } = process.env;
@@ -38,9 +41,9 @@ app.use(fileUpload());
 
 //Middleware que indica a Express dónde están las rutas.
 app.use('/api/users', userRoutes);
-app.use('/api/exercises', exerciseRoutes);
-app.use('/api/trainings', trainingRoutes);
-app.use('/api/ratings', ratingRoutes);
+//app.use('/api/exercises', exerciseRoutes);
+//app.use('/api/trainings', trainingRoutes);
+//app.use('/api/ratings', ratingRoutes);
 
 //Middleware de manejo de errores
 app.use((err, req, res, next) => {

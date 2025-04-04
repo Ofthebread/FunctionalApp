@@ -7,30 +7,24 @@ import authUserMiddleware from '../middlewares/authUserMiddleware.js';
 
 //Importamos funciones controladoras del usuario
 //cambiar nombres de controladoras
-import {
-    registerUser,
-    loginUser,
-    getUserProfile,
-    updateUserProfile,
-    changePassword,
-} from '../controllers/userController.js';
+import registerUserController from '../controllers/users/registerUserController.js';
 
 //Creamos un router
 const router = express.Router();
 
 // Registro de nuevo usuario
-router.post('/register', registerUser);
+router.post('/register', registerUserController);
 
 // Login
-router.post('/login', loginUser);
+//router.post('/login', loginUser);
 
 // Obtener perfil del usuario logueado
-router.get('/profile', authUserMiddleware, getUserProfile);
+//router.get('/profile', authUserMiddleware, getUserProfile);
 
 // Actualizar perfil
-router.put('/profile', authUserMiddleware, updateUserProfile);
+//router.put('/profile', authUserMiddleware, updateUserProfile);
 
 // Cambiar contraseña
-router.post('/password', authUserMiddleware, changePassword);
+//router.post('/password', authUserMiddleware, changePassword);
 
 export default router;
