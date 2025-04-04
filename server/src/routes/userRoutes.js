@@ -7,13 +7,19 @@ import authUserMiddleware from '../middlewares/authUserMiddleware.js';
 
 //Importamos funciones controladoras del usuario
 //cambiar nombres de controladoras
-import registerUserController from '../controllers/users/registerUserController.js';
+import {
+    registerUserController,
+    validateUserController,
+} from '../controllers/users/index.js';
 
 //Creamos un router
 const router = express.Router();
 
 // Registro de nuevo usuario
 router.post('/register', registerUserController);
+
+//Validación usuario
+router.put('/validate/:regCode', validateUserController);
 
 // Login
 //router.post('/login', loginUser);

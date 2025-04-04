@@ -65,7 +65,7 @@ const insertUserModel = async (
 	¿Bienvenid@ ${username}!
 	
 	Gracias por registrarte. Para activar tu cuenta, haz click en el siguiente enlace ⬇️:
-	<a href="${process.env.CLIENT_URL}/validate/${regCode}`;
+	${process.env.CLIENT_URL}/validate/${regCode}`;
 
     //enviamos el correo
     await sendEmailUtil(email, emailSubject, emailBody);
