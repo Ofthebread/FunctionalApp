@@ -36,6 +36,7 @@ const main = async () => {
 			password VARCHAR(100) NOT NULL,
 			firstName VARCHAR(100) NOT NULL,
 			lastName VARCHAR(100) NOT NULL,
+			avatar VARCHAR(100),
 			role ENUM('admin', 'user','coach') DEFAULT 'user',
 			regCode CHAR(30),
 			recoverPassCode CHAR(30),

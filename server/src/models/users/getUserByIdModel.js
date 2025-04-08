@@ -12,7 +12,7 @@ const getUserByIdModel = async (userId) => {
     //obtenemos el listado de usuarios con el id proporcionado
     const [users] = await pool.query(
         `
-		SELECT userId,email,firstName,lastName, role, createdAt FROM users WHERE userId=?`,
+		SELECT userId,email,firstName,lastName,avatar, role, createdAt FROM users WHERE userId=?`,
         [userId],
     );
 

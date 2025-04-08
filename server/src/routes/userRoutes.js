@@ -12,6 +12,7 @@ import {
     validateUserController,
     loginUserController,
     privateUserProfileController,
+    updateUserAvatarController,
 } from '../controllers/users/index.js';
 
 //Creamos un router
@@ -28,6 +29,9 @@ router.post('/login', loginUserController);
 
 // Obtener perfil del usuario logueado
 router.get('/profile', authUserMiddleware, privateUserProfileController);
+
+//actualizar avatar
+router.put('/avatar', authUserMiddleware, updateUserAvatarController);
 
 // Actualizar perfil
 //router.put('/profile', authUserMiddleware, updateUserProfile);
