@@ -14,6 +14,7 @@ import {
     privateUserProfileController,
     updateUserAvatarController,
     updateUserProfileController,
+    updateUserPassController,
 } from '../controllers/users/index.js';
 
 //Creamos un router
@@ -25,19 +26,25 @@ router.post('/register', registerUserController);
 //Validación usuario
 router.put('/validate/:regCode', validateUserController);
 
-// Login
+// Iniciar sesión de usuario (requiere Validacion)
 router.post('/login', loginUserController);
 
 // Obtener perfil del usuario logueado
 router.get('/profile', authUserMiddleware, privateUserProfileController);
 
-//actualizar avatar
+//Actualizar avatar de usuario. (requiere autenticación)
 router.put('/avatar', authUserMiddleware, updateUserAvatarController);
 
-// Actualizar perfil
+//  Actualizar datos de usuario (requiere autenticación)
 router.put('/profile', authUserMiddleware, updateUserProfileController);
 
-// Cambiar contraseña
-//router.post('/password', authUserMiddleware, changePassword);
+// Cambiar contraseña (requiere autenticación)
+router.post('/password', authUserMiddleware, updateUserPassController);
+
+// Enviar código de recuperación de contraseña al email del usuario.
+//router.put('/password/reset', sendRecoveryPassEmailController);
+
+// Actualiza la contraseña de un usuario con un código de recuperación.
+//router.put('/password/reset/:recoverPassCode', useRecoveryPassCodeController);
 
 export default router;

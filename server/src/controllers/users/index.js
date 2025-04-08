@@ -5,6 +5,7 @@ import loginUserController from './loginUserController.js';
 import privateUserProfileController from './privateUserProfileController.js';
 import updateUserAvatarController from './updateUserAvatarController.js';
 import updateUserProfileController from './updateUserProfileController.js';
+import updateUserPassController from './updateUserPassController.js';
 
 //exportamos las funciones
 export {
@@ -14,4 +15,5 @@ export {
     privateUserProfileController,
     updateUserAvatarController,
     updateUserProfileController,
+    updateUserPassController,
 };
