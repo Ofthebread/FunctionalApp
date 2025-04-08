@@ -13,6 +13,7 @@ import {
     loginUserController,
     privateUserProfileController,
     updateUserAvatarController,
+    updateUserProfileController,
 } from '../controllers/users/index.js';
 
 //Creamos un router
@@ -34,7 +35,7 @@ router.get('/profile', authUserMiddleware, privateUserProfileController);
 router.put('/avatar', authUserMiddleware, updateUserAvatarController);
 
 // Actualizar perfil
-//router.put('/profile', authUserMiddleware, updateUserProfile);
+router.put('/profile', authUserMiddleware, updateUserProfileController);
 
 // Cambiar contraseña
 //router.post('/password', authUserMiddleware, changePassword);
