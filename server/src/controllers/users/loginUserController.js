@@ -42,7 +42,7 @@ const loginUserController = async (req, res, next) => {
 
         //almacenamos la información que queremos agregar al token
         const tokenInfo = {
-            id: user.id,
+            id: user.userId,
             role: user.role,
         };
 

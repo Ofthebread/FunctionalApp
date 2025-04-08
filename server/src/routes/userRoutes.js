@@ -11,6 +11,7 @@ import {
     registerUserController,
     validateUserController,
     loginUserController,
+    privateUserProfileController,
 } from '../controllers/users/index.js';
 
 //Creamos un router
@@ -26,7 +27,7 @@ router.put('/validate/:regCode', validateUserController);
 router.post('/login', loginUserController);
 
 // Obtener perfil del usuario logueado
-//router.get('/profile', authUserMiddleware, getUserProfile);
+router.get('/profile', authUserMiddleware, privateUserProfileController);
 
 // Actualizar perfil
 //router.put('/profile', authUserMiddleware, updateUserProfile);
