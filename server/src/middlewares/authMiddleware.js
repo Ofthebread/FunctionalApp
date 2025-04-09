@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 import generateErrorUtil from '../utils/generateErrorUtil.js';
 
 //Creamos middleware que desencripta el token y crea la propiedad user en el objeto request
-const authUserMiddleware = async (req, res, next) => {
+const authMiddleware = async (req, res, next) => {
     try {
         //obtenemos el token de autorización
         const { authorization } = req.headers;
@@ -38,4 +38,4 @@ const authUserMiddleware = async (req, res, next) => {
     }
 };
 //exportamos la función
-export default authUserMiddleware;
+export default authMiddleware;
