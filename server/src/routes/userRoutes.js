@@ -15,6 +15,8 @@ import {
     updateUserAvatarController,
     updateUserProfileController,
     updateUserPassController,
+    sendRecoveryPassController,
+    useRecoveryPassController,
 } from '../controllers/users/index.js';
 
 //Creamos un router
@@ -42,9 +44,9 @@ router.put('/profile', authUserMiddleware, updateUserProfileController);
 router.post('/password', authUserMiddleware, updateUserPassController);
 
 // Enviar código de recuperación de contraseña al email del usuario.
-//router.put('/password/reset', sendRecoveryPassEmailController);
+router.put('/password/reset', sendRecoveryPassController);
 
 // Actualiza la contraseña de un usuario con un código de recuperación.
-//router.put('/password/reset/:recoverPassCode', useRecoveryPassCodeController);
+router.put('/password/reset/:recoverPassCode', useRecoveryPassController);
 
 export default router;

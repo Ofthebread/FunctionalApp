@@ -8,24 +8,24 @@ import generateErrorUtil from '../../utils/generateErrorUtil.js';
 const updateUserPassController = async (req, res, next) => {
     try {
         //obtenemos los datos de usuario autenticado
-        const userId = req.user?.userId;
+        const userId = req.user?.id;
         //obtenemos los datos del body
-        const { password, newPass } = req.body;
+        const { currentPassword, newPass } = req.body;
 
         //si falta algún campo, lanzamos un error
-        if (!password || !newPass) {
+        if (!currentPassword || !newPass) {
             generateErrorUtil('Faltan Campos', 400);
         }
 
         //si las contraseñas son iguales, lanzamos un error
-        if (password === newPass) {
+        if (currentPassword === newPass) {
             generateErrorUtil(
                 'La contraseña nueva no puede ser igual que la actual',
                 400,
             );
         }
         //actualizamos la contraseña
-        await updateUserPassModel(userId, password, newPass);
+        await updateUserPassModel(userId, currentPassword, newPass);
 
         res.status(200).send({
             status: 'ok',

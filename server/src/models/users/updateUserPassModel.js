@@ -8,7 +8,7 @@ import bcrypt from 'bcrypt';
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
 
 //función que se conecta a la base de datos y permite cambiar la contraseña
-const updateUserPassModel = async (userId, password, newPass) => {
+const updateUserPassModel = async (userId, currentPassword, newPass) => {
     //obtenemos el pool
     const pool = await getPool();
 
@@ -17,8 +17,15 @@ const updateUserPassModel = async (userId, password, newPass) => {
         `SELECT password FROM users WHERE userId=?`,
         [userId],
     );
+    // Verificar si se encontró el usuario
+    if (!user.length) {
+        generateErrorUtil('Usuario no encontrado', 404);
+    }
     //Verificamos que la contraseña actual sea la correcta
-    const isValidPassword = await bcrypt.compare(password, user[0].password);
+    const isValidPassword = await bcrypt.compare(
+        currentPassword,
+        user[0].password,
+    );
     if (!isValidPassword) {
         generateErrorUtil('Contraseña incorrecta', 401);
     }
