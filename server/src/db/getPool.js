@@ -52,7 +52,7 @@ const getPool=async()=>{
         }
         //devolvemos el grupo de conexiones
         return await pool;
-    } catch (error) {
+    } catch (err) {
         console.error(err);
         throw new Error('Error al conectar con la base de datos');
     };
