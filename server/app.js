@@ -11,6 +11,7 @@ import path from 'path';
 
 //importamos rutas
 import userRoutes from './src/routes/userRoutes.js';
+import trainingRoutes from './src/routes/trainingRoutes.js';
 
 //obtenemos las variables de entorno necesarias
 const { PORT, UPLOADS_DIR } = process.env;
@@ -42,7 +43,7 @@ app.use(fileUpload());
 //Middleware que indica a Express dónde están las rutas.
 app.use('/api/users', userRoutes);
 //app.use('/api/exercises', exerciseRoutes);
-//app.use('/api/trainings', trainingRoutes);
+app.use('/api/trainings', trainingRoutes);
 //app.use('/api/ratings', ratingRoutes);
 
 //Middleware de manejo de errores

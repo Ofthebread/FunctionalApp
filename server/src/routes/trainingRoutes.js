@@ -12,7 +12,7 @@ import createTrainingController from '../controllers/trainings/index.js';
 const router = express.Router();
 // Crear nuevo entrenamiento (solo coach y admin)
 router.post(
-    '/training',
+    '',
     authMiddleware,
     authRoleMiddleware('coach'),
     createTrainingController,
