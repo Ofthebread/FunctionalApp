@@ -14,7 +14,7 @@ const router = express.Router();
 router.post(
     '',
     authMiddleware,
-    authRoleMiddleware('coach'),
+    authRoleMiddleware(['coach', 'admin']),
     createTrainingController,
 );
 

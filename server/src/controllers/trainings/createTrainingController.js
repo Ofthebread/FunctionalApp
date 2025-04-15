@@ -17,30 +17,16 @@ const createTrainingController = async (req, res, next) => {
         }
 
         //obtenemos el id del coach
-        const coachId = await getUserByIdModel(req.user.id);
-
-        //mensaje si somos users
-        if (user.role === 'user') {
-            generateErrorUtil(
-                'No tienes permisos para crear un entrenamiento',
-                401,
-            );
-        }
+        const coachId = req.user.id;
 
         //insertamos el entrenamiento en la base de datos
-        const trainingId = await createTrainingModel(
-            title,
-            description,
-            coachId,
-        );
+        const training = await createTrainingModel(title, description, coachId);
 
         //enviamos la respuesta
         res.send({
             status: 'ok',
             message: 'Entrenamiento creado con éxito',
-            data: {
-                trainingId,
-            },
+            data: training,
         });
     } catch (err) {
         next(err);
