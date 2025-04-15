@@ -4,6 +4,7 @@ import express from 'express';
 
 //importamos middleware de autenticación
 import authMiddleware from '../middlewares/authMiddleware.js';
+import authRoleMiddleware from '../middlewares/authRoleMiddleware.js';
 
 //Importamos funciones controladoras del usuario
 //cambiar nombres de controladoras
@@ -17,6 +18,7 @@ import {
     updateUserPassController,
     sendRecoveryPassController,
     useRecoveryPassController,
+    updateRoleController,
 } from '../controllers/users/index.js';
 
 //Creamos un router
@@ -56,8 +58,13 @@ router.put('/password/reset/:recoverPassCode', useRecoveryPassController);
 //Activar/desactivar usuario (requiere autenticación y rol admin)
 //router.patch('/admin/users/:id/:active', authMiddleware, authRoleMiddleware('admin'), toggleUserActiveController);
 
-//Actualizar rol de usuario (requiere autenticación y rol admin)
-//router.put('/admin/users/:id/role',authMiddleware,authRoleMiddleware('admin'),    updateUserRoleController,);
+//Actualizar rol de usuario (requiere autenticación con rol admin)
+router.put(
+    '/admin/users/:id/role',
+    authMiddleware,
+    authRoleMiddleware('admin'),
+    updateRoleController,
+);
 
 //Eliminar usuario (requiere autenticación y rol admin)
 //router.delete('/admin/users/:id',authMiddleware,authRoleMiddleware('admin'),    deleteUserController,);

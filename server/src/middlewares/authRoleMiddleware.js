@@ -2,12 +2,17 @@
 import generateErrorUtil from '../utils/generateErrorUtil.js';
 
 //middleware que verifica el rol del usuario
-const authRoleMiddleware = (role) => {
+const authRoleMiddleware = (allowedRoles) => {
     //devolvemos una función middleware
     return (req, res, next) => {
         try {
-            //si el rol del usuario no coincide con el rol, lanzamos un error
-            if (req.user.role !== role) {
+            //convertimos el parametro a un array
+            allowedRoles = Array.isArray(allowedRoles)
+                ? allowedRoles
+                : [allowedRoles];
+
+            //si el rol del usuario no está en el array, lanzamos un error.
+            if (!allowedRoles.includes(req.user.role)) {
                 generateErrorUtil(
                     'No tienes permisos para realizar esta acción',
                     403,

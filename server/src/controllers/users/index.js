@@ -8,6 +8,7 @@ import updateUserProfileController from './updateUserProfileController.js';
 import updateUserPassController from './updateUserPassController.js';
 import sendRecoveryPassController from './sendRecoveryPassController.js';
 import useRecoveryPassController from './useRecoveryPassController.js';
+import updateRoleController from '../admin/updateRoleController.js';
 
 //exportamos las funciones
 export {
@@ -20,4 +21,5 @@ export {
     updateUserPassController,
     sendRecoveryPassController,
     useRecoveryPassController,
+    updateRoleController,
 };
