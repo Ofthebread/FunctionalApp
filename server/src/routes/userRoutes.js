@@ -25,6 +25,7 @@ import {
     updateRoleController,
     listUsersController,
     toggleUserActiveController,
+    deleteUserController,
 } from '../controllers/admin/indexAdmin.js';
 
 //Creamos un router
@@ -83,6 +84,11 @@ router.put(
 );
 
 //Eliminar usuario (requiere autenticación y rol admin)
-//router.delete('/admin/users/:id',authMiddleware,authRoleMiddleware('admin'),    deleteUserController,);
+router.delete(
+    '/admin/users/:id',
+    authMiddleware,
+    authRoleMiddleware('admin'),
+    deleteUserController,
+);
 
 export default router;
