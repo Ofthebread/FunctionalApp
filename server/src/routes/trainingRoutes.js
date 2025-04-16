@@ -9,6 +9,7 @@ import authRoleMiddleware from '../middlewares/authRoleMiddleware.js';
 import {
     createTrainingController,
     getTrainingController,
+    listTrainingsController,
 } from '../controllers/trainings/indexTrainings.js';
 
 //creamos router
@@ -27,7 +28,12 @@ router.get('/:id', authMiddleware, getTrainingController);
 // Editar un entrenamiento existente (solo coach y admin)
 
 // Lista todos los entrenamientos (solo coach y admin)
-
+router.get(
+    '',
+    authMiddleware,
+    authRoleMiddleware(['coach', 'admin']),
+    listTrainingsController,
+);
 // Eliminar un entrenamiento (solo coach y admin)
 
 // Asignar un entrenamiento a un usuario (solo coach y admin)
