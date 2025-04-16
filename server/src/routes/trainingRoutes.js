@@ -11,6 +11,7 @@ import {
     getTrainingController,
     listTrainingsController,
     updateTrainingController,
+    deleteTrainingController,
 } from '../controllers/trainings/indexTrainings.js';
 
 //creamos router
@@ -41,7 +42,12 @@ router.get(
     listTrainingsController,
 );
 // Eliminar un entrenamiento (solo coach y admin)
-
+router.delete(
+    '/:id',
+    authMiddleware,
+    authRoleMiddleware(['coach', 'admin']),
+    deleteTrainingController,
+);
 // Asignar un entrenamiento a un usuario (solo coach y admin)
 
 // Ver valoraciones de un entrenamiento (solo coach y admin)
