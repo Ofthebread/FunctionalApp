@@ -10,6 +10,7 @@ import {
     createTrainingController,
     getTrainingController,
     listTrainingsController,
+    updateTrainingController,
 } from '../controllers/trainings/indexTrainings.js';
 
 //creamos router
@@ -26,7 +27,12 @@ router.post(
 router.get('/:id', authMiddleware, getTrainingController);
 
 // Editar un entrenamiento existente (solo coach y admin)
-
+router.put(
+    '/:id',
+    authMiddleware,
+    authRoleMiddleware(['admin', 'coach']),
+    updateTrainingController,
+);
 // Lista todos los entrenamientos (solo coach y admin)
 router.get(
     '',
