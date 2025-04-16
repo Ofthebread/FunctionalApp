@@ -6,7 +6,10 @@ import authMiddleware from '../middlewares/authMiddleware.js';
 import authRoleMiddleware from '../middlewares/authRoleMiddleware.js';
 
 //importamos controladores
-import createTrainingController from '../controllers/trainings/index.js';
+import {
+    createTrainingController,
+    getTrainingController,
+} from '../controllers/trainings/indexTrainings.js';
 
 //creamos router
 const router = express.Router();
@@ -19,7 +22,7 @@ router.post(
 );
 
 // Ver detalle de un entrenamiento específico (cualquier usuario autenticado
-//router.get('/trainings/:id',authMiddleware,getTrainingController);
+router.get('/:id', authMiddleware, getTrainingController);
 
 // Editar un entrenamiento existente (solo coach y admin)
 
