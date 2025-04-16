@@ -12,6 +12,7 @@ import {
     listTrainingsController,
     updateTrainingController,
     deleteTrainingController,
+    assignTrainingController,
 } from '../controllers/trainings/indexTrainings.js';
 
 //creamos router
@@ -49,7 +50,12 @@ router.delete(
     deleteTrainingController,
 );
 // Asignar un entrenamiento a un usuario (solo coach y admin)
-
+router.post(
+    '/assign/:userId/:trainingId',
+    authMiddleware,
+    authRoleMiddleware(['coach', 'admin']),
+    assignTrainingController,
+);
 // Ver valoraciones de un entrenamiento (solo coach y admin)
 
 export default router;
