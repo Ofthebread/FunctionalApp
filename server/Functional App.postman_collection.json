@@ -459,6 +459,35 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Asignar un entrenamiento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_coachFran}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/trainings/assign/1/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"trainings",
+								"assign",
+								"1",
+								"9"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
