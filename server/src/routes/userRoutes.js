@@ -18,8 +18,15 @@ import {
     updateUserPassController,
     sendRecoveryPassController,
     useRecoveryPassController,
+} from '../controllers/users/indexUsers.js';
+
+//importamos funciones controladoras de administrador
+import {
     updateRoleController,
-} from '../controllers/users/index.js';
+    listUsersController,
+    toggleUserActiveController,
+    deleteUserController,
+} from '../controllers/admin/indexAdmin.js';
 
 //Creamos un router
 const router = express.Router();
@@ -53,10 +60,20 @@ router.put('/password/reset/:recoverPassCode', useRecoveryPassController);
 
 // Rutas de administración (protegidas)
 //Listar usuarios (requiere autenticación y rol admin)
-//router.get('/admin/users', authMiddleware, authRoleMiddleware('admin'), listUsersController);
+router.get(
+    '/admin/users',
+    authMiddleware,
+    authRoleMiddleware('admin'),
+    listUsersController,
+);
 
 //Activar/desactivar usuario (requiere autenticación y rol admin)
-//router.patch('/admin/users/:id/:active', authMiddleware, authRoleMiddleware('admin'), toggleUserActiveController);
+router.patch(
+    '/admin/users/:id/:active',
+    authMiddleware,
+    authRoleMiddleware('admin'),
+    toggleUserActiveController,
+);
 
 //Actualizar rol de usuario (requiere autenticación con rol admin)
 router.put(
@@ -67,6 +84,11 @@ router.put(
 );
 
 //Eliminar usuario (requiere autenticación y rol admin)
-//router.delete('/admin/users/:id',authMiddleware,authRoleMiddleware('admin'),    deleteUserController,);
+router.delete(
+    '/admin/users/:id',
+    authMiddleware,
+    authRoleMiddleware('admin'),
+    deleteUserController,
+);
 
 export default router;
