@@ -9,6 +9,10 @@ import authRoleMiddleware from '../middlewares/authRoleMiddleware.js';
 import {
     createTrainingController,
     getTrainingController,
+    listTrainingsController,
+    updateTrainingController,
+    deleteTrainingController,
+    assignTrainingController,
 } from '../controllers/trainings/indexTrainings.js';
 
 //creamos router
@@ -25,13 +29,33 @@ router.post(
 router.get('/:id', authMiddleware, getTrainingController);
 
 // Editar un entrenamiento existente (solo coach y admin)
-
+router.put(
+    '/:id',
+    authMiddleware,
+    authRoleMiddleware(['admin', 'coach']),
+    updateTrainingController,
+);
 // Lista todos los entrenamientos (solo coach y admin)
-
+router.get(
+    '',
+    authMiddleware,
+    authRoleMiddleware(['coach', 'admin']),
+    listTrainingsController,
+);
 // Eliminar un entrenamiento (solo coach y admin)
-
+router.delete(
+    '/:id',
+    authMiddleware,
+    authRoleMiddleware(['coach', 'admin']),
+    deleteTrainingController,
+);
 // Asignar un entrenamiento a un usuario (solo coach y admin)
-
+router.post(
+    '/assign/:userId/:trainingId',
+    authMiddleware,
+    authRoleMiddleware(['coach', 'admin']),
+    assignTrainingController,
+);
 // Ver valoraciones de un entrenamiento (solo coach y admin)
 
 export default router;
