@@ -24,6 +24,7 @@ import {
 import {
     updateRoleController,
     listUsersController,
+    toggleUserActiveController,
 } from '../controllers/admin/indexAdmin.js';
 
 //Creamos un router
@@ -66,7 +67,12 @@ router.get(
 );
 
 //Activar/desactivar usuario (requiere autenticación y rol admin)
-//router.patch('/admin/users/:id/:active', authMiddleware, authRoleMiddleware('admin'), toggleUserActiveController);
+router.patch(
+    '/admin/users/:id/:active',
+    authMiddleware,
+    authRoleMiddleware('admin'),
+    toggleUserActiveController,
+);
 
 //Actualizar rol de usuario (requiere autenticación con rol admin)
 router.put(
