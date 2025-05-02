@@ -5,6 +5,7 @@ import listTrainingsController from './listTrainingsController.js';
 import updateTrainingController from './updateTrainingController.js';
 import deleteTrainingController from './deleteTrainingController.js';
 import assignTrainingController from './assignTrainingController.js';
+import getUserTrainingsController from './getUserTrainingsController.js';
 //exportamos
 export {
     createTrainingController,
@@ -13,4 +14,5 @@ export {
     updateTrainingController,
     deleteTrainingController,
     assignTrainingController,
+    getUserTrainingsController,
 };
