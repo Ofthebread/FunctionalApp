@@ -70,6 +70,5 @@ router.get(
     authRoleMiddleware(['coach', 'admin']),
     getTrainingUsersController,
 );
-// Ver valoraciones de un entrenamiento (solo coach y admin)
-
+//Exportamos router
 export default router;
