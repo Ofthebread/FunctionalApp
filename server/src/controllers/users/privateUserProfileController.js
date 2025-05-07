@@ -5,7 +5,7 @@ import getUserByIdModel from '../../models/users/getUserByIdModel.js';
 const privateUserProfileController = async (req, res, next) => {
     try {
         //obtenemos los datos de los usuarios
-        const user = await getUserByIdModel(req.user.id);
+        const user = await getUserByIdModel(req.user.userId);
 
         //enviamos la respuesta
         res.send({

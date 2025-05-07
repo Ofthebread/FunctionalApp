@@ -39,7 +39,7 @@ const insertRatingTrainingModel = async (
 
     //verificamos que el usuario tenga asignado este entrenamiento
     const [assignedTraining] = await pool.query(
-        `SELECT user_trainingId FROM users_trainings WHERE userId=? AND trainingId=?`,
+        `SELECT * FROM users_trainings WHERE userId=? AND trainingId=?`,
         [userId, trainingId],
     );
 

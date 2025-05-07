@@ -24,6 +24,8 @@ const authMiddleware = async (req, res, next) => {
         try {
             //extraemos el token eliminando "Bearer " (con espacio)
             const token = authorization.substring(7);
+            // const decoded = jwt.decode(token);
+            //console.log('Contenido del token:', decoded);
 
             //desencriptamos el token
             const tokenInfo = jwt.verify(token, process.env.SECRET);
@@ -31,6 +33,7 @@ const authMiddleware = async (req, res, next) => {
             //creamos una propiedad inventada en el objeto "request" para almacenar el Id y rol del usuario
             req.user = {
                 userId: tokenInfo.id,
+                id: tokenInfo.id, // Alias para compatibilidad
                 role: tokenInfo.role,
             };
 

@@ -20,7 +20,7 @@ const getUserByIdModel = async (userId) => {
     if (users.length < 1) {
         generateErrorUtil('Usuario no encontrado', 404);
     }
-
+    console.log('Buscando usuario con userId:', userId);
     //devolvemos el usuario en posición 0 del array
     return users[0];
 };
