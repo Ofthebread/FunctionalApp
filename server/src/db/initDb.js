@@ -23,7 +23,7 @@ const main = async () => {
 
         //Borramos las tablas
         await pool.query(
-            'DROP TABLE IF EXISTS ratings, users_trainings, training_exercises, exercises,trainings, users',
+            'DROP TABLE IF EXISTS app_ratings, coach_ratings, ratings, users_trainings, training_exercises, exercises,trainings, users',
         );
         console.log('Creando tablas...');
 
@@ -109,10 +109,37 @@ const main = async () => {
 			trainingId INT UNSIGNED NOT NULL,
 			rpe TINYINT UNSIGNED NOT NULL CHECK (rpe BETWEEN 1 AND 10),
 			enjoyment TINYINT UNSIGNED NOT NULL CHECK (enjoyment BETWEEN 1 AND 5),
+			rate TINYINT UNSIGNED NOT NULL CHECK (rate BETWEEN 1 AND 5),
 			comment TEXT,
 			createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
 			FOREIGN KEY (userId) REFERENCES users(userId) ON UPDATE CASCADE,
 			FOREIGN KEY (trainingId) REFERENCES trainings(trainingId) ON UPDATE CASCADE
+			)`);
+
+        //Creamos la tabla de valoraciones de coaches
+        await pool.query(`
+			CREATE TABLE IF NOT EXISTS coach_ratings(
+			coachRatingId INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+			userId INT UNSIGNED NOT NULL,
+			coachId INT UNSIGNED NOT NULL,
+			rating TINYINT UNSIGNED NOT NULL CHECK (rating BETWEEN 1 AND 5),
+			comment TEXT,
+			createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+			FOREIGN KEY (userId) REFERENCES users(userId) ON UPDATE CASCADE,
+			FOREIGN KEY (coachId) REFERENCES users(userId) ON UPDATE CASCADE
+			)`);
+
+        //Creamos la tabla de valoraciones de la aplicación
+        await pool.query(`
+			CREATE TABLE IF NOT EXISTS app_ratings(
+			appRatingId INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+			userId INT UNSIGNED NOT NULL,
+			rating TINYINT UNSIGNED NOT NULL CHECK (rating BETWEEN 1 AND 5),
+			usability TINYINT UNSIGNED NOT NULL CHECK (usability BETWEEN 1 AND 5),
+			features TINYINT UNSIGNED NOT NULL CHECK (features BETWEEN 1 AND 5),
+			comment TEXT,
+			createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+			FOREIGN KEY (userId) REFERENCES users(userId) ON UPDATE CASCADE
 			)`);
 
         console.log('Tablas creadas!');

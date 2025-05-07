@@ -12,6 +12,7 @@ import path from 'path';
 //importamos rutas
 import userRoutes from './src/routes/userRoutes.js';
 import trainingRoutes from './src/routes/trainingRoutes.js';
+import ratingsRoutes from './src/routes/ratingsRoutes.js';
 
 //obtenemos las variables de entorno necesarias
 const { PORT, UPLOADS_DIR } = process.env;
@@ -44,7 +45,7 @@ app.use(fileUpload());
 app.use('/api/users', userRoutes);
 //app.use('/api/exercises', exerciseRoutes);
 app.use('/api/trainings', trainingRoutes);
-//app.use('/api/ratings', ratingRoutes);
+app.use('/api/ratings', ratingsRoutes);
 
 //Middleware de manejo de errores
 app.use((err, req, res, next) => {

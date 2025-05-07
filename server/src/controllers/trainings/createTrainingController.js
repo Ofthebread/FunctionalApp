@@ -1,6 +1,5 @@
 //importamos modelos
 import createTrainingModel from '../../models/trainings/createTrainingModel.js';
-import getUserByIdModel from '../../models/users/getUserByIdModel.js';
 
 //importamos función que lanza errores
 import generateErrorUtil from '../../utils/generateErrorUtil.js';
@@ -17,7 +16,7 @@ const createTrainingController = async (req, res, next) => {
         }
 
         //obtenemos el id del coach
-        const coachId = req.user.id;
+        const coachId = req.user.userId;
 
         //insertamos el entrenamiento en la base de datos
         const training = await createTrainingModel(title, description, coachId);
