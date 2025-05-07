@@ -14,6 +14,7 @@ import {
     deleteTrainingController,
     assignTrainingController,
     getUserTrainingsController,
+    getTrainingUsersController,
 } from '../controllers/trainings/indexTrainings.js';
 
 //creamos router
@@ -59,11 +60,16 @@ router.post(
 router.get('/user', authMiddleware, getUserTrainingsController);
 router.get('/user/:userId', authMiddleware, getUserTrainingsController);
 
-// Ver detalle de un entrenamiento específico (cualquier usuario autenticado
+// Ver detalle de un entrenamiento específico (cualquier usuario autenticado)
 router.get('/:id', authMiddleware, getTrainingController);
 
 //Ver usuarios asignados a un entrenamiento (solo coach y admin)
-
+router.get(
+    '/:trainingId/users',
+    authMiddleware,
+    authRoleMiddleware(['coach', 'admin']),
+    getTrainingUsersController,
+);
 // Ver valoraciones de un entrenamiento (solo coach y admin)
 
 export default router;
