@@ -17,13 +17,20 @@ const authMiddleware = async (req, res, next) => {
                 generateErrorUtil('Falta la cabecera de autorización', 401),
             );
         }
+        //verificamos que el token comienza con Bearer
+        if (!authorization.startsWith('Bearer ')) {
+            return next(generateErrorUtil('Formato de token inválido', 401));
+        }
         try {
+            //extraemos el token eliminando "Bearer " (con espacio)
+            const token = authorization.substring(7);
+
             //desencriptamos el token
-            const tokenInfo = jwt.verify(authorization, process.env.SECRET);
+            const tokenInfo = jwt.verify(token, process.env.SECRET);
 
             //creamos una propiedad inventada en el objeto "request" para almacenar el Id y rol del usuario
             req.user = {
-                id: tokenInfo.id,
+                userId: tokenInfo.id,
                 role: tokenInfo.role,
             };
 
