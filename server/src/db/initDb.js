@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import 'dotenv/config';
 const {
     MYSQL_ADMIN_USER,
-    MYSQL_ADMIN_PASS,
+    MYSQL_ADMIN_PASSWORD,
     MYSQL_ADMIN_FIRSTNAME,
     MYSQL_ADMIN_LASTNAME,
     MYSQL_ADMIN_EMAIL,
@@ -145,7 +145,7 @@ const main = async () => {
         console.log('Tablas creadas!');
 
         //Encriptamos la constraseña del administrador
-        const hashedPass = await bcrypt.hash(`${MYSQL_ADMIN_PASS}`, 10);
+        const hashedPass = await bcrypt.hash(`${MYSQL_ADMIN_PASSWORD}`, 10);
 
         //Insertamos el administrador en la base de datos
         await pool.query(
