@@ -16,7 +16,7 @@ const updateUserProfileController = async (req, res, next) => {
         }
 
         //actualizamos el perfil y obtenemos los datos
-        const updatedUser = await updateUserProfileModel(req.user.id, {
+        const updatedUser = await updateUserProfileModel(req.user.userId, {
             email,
             firstName,
             lastName,

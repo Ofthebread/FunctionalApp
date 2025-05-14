@@ -10,7 +10,7 @@ const insertRatingTrainingController = async (req, res, next) => {
         //obtenemos los datos necesarios del body
         let { rpe, enjoyment, comment, rate } = req.body;
         const { trainingId } = req.params;
-        const userId = req.user.id;
+        const userId = req.user.userId;
 
         //si falta algún campo, lanzamos un error
         if (!rpe || !enjoyment || !comment || !rate) {

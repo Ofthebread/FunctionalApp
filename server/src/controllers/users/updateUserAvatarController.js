@@ -23,7 +23,7 @@ const updateUserAvatarController = async (req, res, next) => {
         }
 
         //obtenemos el id del usuario para poder ver si tiene avatar
-        const user = await getUserByIdModel(req.user.id);
+        const user = await getUserByIdModel(req.user.userId);
 
         //si el usuario tiene avatar lo eliminamos.
         if (user.avatar) {
